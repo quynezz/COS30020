@@ -1,0 +1,4 @@
+ID101	Frontend	This job is fun and well-payed	23/05/39	fullTime	onGoing	remote		email
+ID123	asdasd	Checked	23/05/25	partTime	onGoing	remote	post	
+ID100	BackEnd	12312312313213	23/05/25	partTime	onGoing	remote	post	email
+ID105	Web Design	1231312	23/05/25	partTime	onGoing	remote	post	
