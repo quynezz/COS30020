@@ -151,7 +151,7 @@ main {
   background: var(--light-gray);
   padding: var(--spacing-md);
   border-radius: 18px;
-  box-shadow: 0 2px 6px var(--shadow-light);
+  box-shadow: 0 42px 16px var(--shadow-light);
   width: 100%;
   max-width: 716px;
   display: flex;
@@ -160,6 +160,7 @@ main {
   flex-grow: 1;
   overflow-y: auto;
   max-height: max-content;
+
 }
 
 /* Ending Card */
