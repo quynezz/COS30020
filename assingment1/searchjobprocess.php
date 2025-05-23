@@ -23,68 +23,68 @@
   </header>
   <main>
     <section class="card">
-      <?php
-      session_start();
+<?php
+session_start();
 
-      // Pre-defined dir and file
-      $data_dir = "../assingment1/data/jobs";
-      $data_file = "position.txt";
+// Pre-defined dir and file
+$data_dir = "../assingment1/data/jobs";
+$data_file = "position.txt";
 
-      // Full file path
-      $file_path = "$data_dir/$data_file";
+// Full file path
+$file_path = "$data_dir/$data_file";
 
 
-      // GET and POST variables
-      $title = isset($_GET["title"]) ? trim($_GET["title"]) : "";
-      $position = isset($_GET["position"]) ? (array)$_GET["position"] : [];
-      $full_time = isset($_GET["fullTime"]) ? $_GET["fullTime"] : "";
-      $part_time = isset($_GET["partTime"]) ? $_GET["partTime"] : "";
-      $application_by = isset($_POST["applicationBy"]) ? (array)$_POST["applicationBy"] : [];
-      $app_post = in_array("post", $application_by) ? "post" : "";
-      $app_email = in_array("email", $application_by) ? "email" : "";
-      $contract = isset($_GET["contract"]) ? (array)$_GET["contract"] : [];
-      $con_on = in_array("onGoing", $contract) ? "onGoing" : "";
-      $con_fix = in_array("fixedTerm", $contract) ? "fixedTerm" : "";
+// GET and POST variables
+$title = isset($_GET["title"]) ? trim($_GET["title"]) : "";
+$position = isset($_GET["position"]) ? (array)$_GET["position"] : [];
+$full_time = isset($_GET["fullTime"]) ? $_GET["fullTime"] : "";
+$part_time = isset($_GET["partTime"]) ? $_GET["partTime"] : "";
+$application_by = isset($_POST["applicationBy"]) ? (array)$_POST["applicationBy"] : [];
+$app_post = in_array("post", $application_by) ? "post" : "";
+$app_email = in_array("email", $application_by) ? "email" : "";
+$contract = isset($_GET["contract"]) ? (array)$_GET["contract"] : [];
+$con_on = in_array("onGoing", $contract) ? "onGoing" : "";
+$con_fix = in_array("fixedTerm", $contract) ? "fixedTerm" : "";
 
-      function searchResults($file_path, $title)
-      {
-        // Validate job title
-        if (empty($title)) {
-          echo '<p class="error-message"><i class="fas fa-times-circle"></i> Error: Please enter a job title to search.</p>';
-          return;
-        }
+function searchResults($file_path, $title)
+{
+    // Validate job title
+    if (empty($title)) {
+        echo '<p class="error-message"><i class="fas fa-times-circle"></i> Error: Please enter a job title to search.</p>';
+        return;
+    }
 
-        // Validate file existence
-        if (!is_file($file_path)) {
-          echo '<p class="error-message"><i class="fas fa-times-circle"></i> Error: Job database file not found.</p>';
-          return;
-        }
+    // Validate file existence
+    if (!is_file($file_path)) {
+        echo '<p class="error-message"><i class="fas fa-times-circle"></i> Error: Job database file not found.</p>';
+        return;
+    }
 
-        // Read and search file
-        $file_content = file_get_contents($file_path);
-        $file_lines = explode("\n", trim($file_content));
-        $matched_jobs = [];
+    // Read and search file
+    $file_content = file_get_contents($file_path);
+    $file_lines = explode("\n", trim($file_content));
+    $matched_jobs = [];
 
-        // Search for matching job titles (case-insensitive, partial matches)
-        foreach ($file_lines as $job) {
-          $each_jobs = explode("\t",$job);
-          $each_jobs_title = $each_jobs[1];
-          if (!empty(trim($each_jobs_title))) {
+    // Search for matching job titles (case-insensitive, partial matches)
+    foreach ($file_lines as $job) {
+        $each_jobs = explode("\t",$job);
+        $each_jobs_title = $each_jobs[1];
+        if (!empty(trim($each_jobs_title))) {
             if (stripos($each_jobs_title, $title) !== false) {
-              array_push($matched_jobs,$job);
+                array_push($matched_jobs,$job);
             }
-          }
         }
+    }
 
-        // Display job count
-        if (!empty($matched_jobs)) {
-          echo '<div class="job-info"><i class="fas fa-briefcase"></i> Found ' . count($matched_jobs) . ' job(s) matching your search.</div>';
-        }
+    // Display job count
+    if (!empty($matched_jobs)) {
+        echo '<div class="job-info"><i class="fas fa-briefcase"></i> Found ' . count($matched_jobs) . ' job(s) matching your search.</div>';
+    }
 
-        // Display results
-        if (!empty($matched_jobs)) {
-          echo '<div class="job-list">';
-          for ($i = 0; $i < count($matched_jobs); $i++) {
+    // Display results
+    if (!empty($matched_jobs)) {
+        echo '<div class="job-list">';
+        for ($i = 0; $i < count($matched_jobs); $i++) {
             $job = $matched_jobs[$i];
             $fields = explode("\t", trim($job));
 
@@ -101,7 +101,7 @@
             // Truncate description to 50 words for display
             $words = explode(' ', $description);
             if (count($words) > 50) {
-              $description = implode(' ', array_slice($words, 0, 50)) . '...';
+                $description = implode(' ', array_slice($words, 0, 50)) . '...';
             }
 
             // Display job card
@@ -116,16 +116,16 @@
               <p><strong>Location:</strong> ' . $location . '</p>
               <p><strong>Application Method:</strong> ' . $application_method . '</p>
             </div>';
-          }
-          echo '</div>';
-        } else {
-          echo '<p class="error-message"><i class="fas fa-times-circle"></i> No jobs found matching your search criteria.</p>';
         }
-      }
+        echo '</div>';
+    } else {
+        echo '<p class="error-message"><i class="fas fa-times-circle"></i> No jobs found matching your search criteria.</p>';
+    }
+}
 
-      // Call the search function
-      searchResults($file_path, $title, $jobs_per_page);
-      ?>
+// Call the search function
+searchResults($file_path, $title, $jobs_per_page);
+?>
       <p class="links">
         <a href="index.php"><i class="fas fa-home"></i> Return to Home Page</a>
         <a href="searchjobform.php"><i class="fas fa-search"></i> Search Another Job</a>
