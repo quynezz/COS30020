@@ -15,33 +15,33 @@
 <body>
   <h1>Web Programming - Lab 5</h1>
 
-  <?php // read the comments for hints on how to answer each item
-  if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["name"]) && isset($_POST["quantity"])) { // check if both form data exists
+<?php // read the comments for hints on how to answer each item
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["name"]) && isset($_POST["quantity"])) { // check if both form data exists
     // Variables
     $filename = "./data/shop.txt";
     $item = $_POST["name"]; // obtain the form item data
     $qty = $_POST["quantity"]; // obtain the form quantity data
     if ($qty > 0) {
-      $handle = fopen($filename, "a"); // open the file in append mode
-      $data = "$item," . $qty . PHP_EOL; // concatenate item and qty delimited by comma
-      echo fwrite($handle, $data); // write string to text file
-      fclose($handle); // close the text file
+        $handle = fopen($filename, "a"); // open the file in append mode
+        $data = "$item," . $qty . PHP_EOL; // concatenate item and qty delimited by comma
+        echo fwrite($handle, $data); // write string to text file
+        fclose($handle); // close the text file
 
-      echo "<p>Shopping List</p>"; // generate shopping list
-      $handle = fopen($filename, "r"); // open the file in read mode
-      while (!feof($handle)) { // loop while not end of file
-        $data = fgets($handle); // read a line from the text file
-        echo "<p>", $data, "</p>"; // generate HTML output of the data
-      }
-      fclose($handle); // close the text file
+        echo "<p>Shopping List</p>"; // generate shopping list
+        $handle = fopen($filename, "r"); // open the file in read mode
+        while (!feof($handle)) { // loop while not end of file
+            $data = fgets($handle); // read a line from the text file
+            echo "<p>", $data, "</p>"; // generate HTML output of the data
+        }
+        fclose($handle); // close the text file
     } else {
-      echo "<p> Please enter an valid quantity </p>";
+        echo "<p> Please enter an valid quantity </p>";
     }
-  } else { // no input
+} else { // no input
     echo "<p>Please enter item and quantity in the input form.</p>";
-  }
+}
 
-  ?>
+?>
 </body>
 
 </html>

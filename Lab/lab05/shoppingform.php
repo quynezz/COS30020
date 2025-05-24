@@ -15,7 +15,6 @@
 <body>
   <h1>Web Programming Form - Lab 5</h1>
   <form action="shoppingsave.php" method="post">
-
     <label>Please enter the item name:</label>
     <br>
     <input type="text" name="name"></input>

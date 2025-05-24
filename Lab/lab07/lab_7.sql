@@ -1,6 +1,5 @@
-<!--Student_Name: LauNgocQuyen-->
-<!--Student_ID: 104198996-->
 
+<!--Student_Name: LauNgocQuyen--> <!--Student_ID: 104198996-->
 -- TASK 1:
 -- Create the cars table
 CREATE TABLE cars (
