@@ -32,7 +32,61 @@
           <input type="text" id="title" name="title" placeholder="Cloud Architecter, Data Analyst, ...">
         </div>
         <p class="hint"><i class="fa-solid fa-lightbulb" style="color: #FFD43B;"></i><strong>Most look-up keywords:</strong> Web developer, Front-end developer, Back-end developer,...</p>
-                <button type="submit"><i class="fas fa-search"></i> Search jobs</button>
+        <div class="form-group legends">
+          <fieldset>
+            <legend><i class="fas fa-briefcase"></i> Position:</legend>
+            <div class="checkbox-group">
+              <div class="checkbox-option">
+                <input type="checkbox" id="full_time" name="fullTime" value="fullTime">
+                <label for="full_time">Full Time</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="part_time" name="partTime" value="partTime">
+                <label for="part_time">Part Time</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><i class="fas fa-file-contract"></i> Contract:</legend>
+            <div class="checkbox-group">
+              <div class="checkbox-option">
+                <input type="checkbox" id="ongoing" name="onGoing" value="onGoing">
+                <label for="ongoing">On-going</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="fixed_term" name="fixedTerm" value="fixedTerm">
+                <label for="fixed_term">Fixed Term</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><i class="fas fa-envelope"></i> Application By:</legend>
+            <div class="checkbox-group">
+              <div class="checkbox-option">
+                <input type="checkbox" id="post" name="post" value="post">
+                <label for="post">Post</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="email" name="email" value="email">
+                <label for="email">Email</label>
+              </div>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend><i class="fas fa-map-marker-alt"></i> Location:</legend>
+            <div class="checkbox-group">
+              <div class="checkbox-option">
+                <input type="checkbox" id="onsite" name="onSite" value="onSite">
+                <label for="onsite">On site</label>
+              </div>
+              <div class="checkbox-option">
+                <input type="checkbox" id="remote" name="remote" value="remote">
+                <label for="remote">Remote</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <button type="submit"><i class="fas fa-search"></i> Search jobs</button>
       </form>
     </section>
   </main>

@@ -26,25 +26,25 @@
             <h2><i class="fa-solid fa-circle-info"></i> Assignment Details</h2>
             <ul>
                 <li><strong>PHP Version:</strong> <?php echo phpversion(); ?></li>
-                <li><strong>Tasks Not Attempted or Not Completed:</strong> All tasks (1–11) have been fully and successfully attempted and completed.  <i class="fa-solid fa-check" style="color: green;"></i></li>
+                <li><strong>Tasks Not Attempted or Not Completed:</strong> All tasks (1–8) have been fully and successfully attempted and completed.  <i class="fa-solid fa-check" style="color: green;"></i></li>
                 <li><strong>Special Features:</strong>
                     <ul>
-                        <li>Enhanced user interface with responsive design using CSS Grid and Flexbox.</li>
-                        <li>Comprehensive input validation for all form fields.</li>
-                        <li>Advanced search functionality with multiple criteria.</li>
-                        <li>Sorting of search results by closing date (most future first).</li>
+                        <li>Enhanced user interface with responsive design using CSS Grid, Flexbox and Animations.</li>
+                        <li>Milimalism colour pattern followed with good color contrast on buttons.</li>
+                        <li>Advanced search features with special implementaion for filtering the sepcial words.</li>
+                        <li>Navigation bar for instant accessibility to pages.</li>
+                        <li>Comprehensive input validation for all form fields comes with errors messages for validation.</li>
+                        <li>Sorting of jobs search results by closing date (most future first).</li>
+                        <li>For jobs past the closing date, an added field call "Status" will announce user about job condition</li>
                         <li>Error messages are user-friendly and include navigation links.</li>
+                        <li>Error handling log also added in some complicated code implementaion.</li>
                     </ul>
                 </li>
-                <li><strong>Discussion Board Participation:</strong> I did not participate in the discussion board due to time constraints and focusing on completing the assignment independently.</li>
-            <p class="image-links">
-                <a href="#" class="image-button">Image 1</a>
-                <a href="#" class="image-button">Image 2</a>
-                <a href="#" class="image-button">Image 3</a>
-                <a href="#" class="image-button">Image 4</a>
-            </p>
-            </ul>
-            <p><a href="index.php"><i class="fas fa-home"></i> Return to Home Page</a></p>
+                <li><strong>Discussion Board Participation:</strong> I did not participate in the discussion board due to time constraints.
+                            I was focusing on completing the Assignment 1 independently.
+                            Others question were asked and response instantly by lecturer throughout the development process.</li>
+                        </ul>
+            <p class="links"><a href="index.php"><i class="fas fa-home"></i> Return to Home Page</a></p>
         </section>
     </main>
     <footer>

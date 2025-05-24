@@ -30,8 +30,9 @@
     --spacing-lg: 1rem;
     --spacing-xl: 3.25rem;
 }
-
 /* Ending Pre-defined Spacing */
+
+
 
 * {
     box-sizing: border-box;
@@ -150,10 +151,10 @@ main {
 .card {
     background: var(--light-gray);
     padding: var(--spacing-md);
-    border-radius: 18px;
+    border-radius: 16px;
     box-shadow: 0 42px 16px var(--shadow-light);
     width: 100%;
-    max-width: 716px;
+    max-width: 800px;
     display: flex;
     flex-direction: column;
     animation: fadeIn 0.5s ease-out;
@@ -381,8 +382,8 @@ a:hover {
     width: 32%;
     max-width: 100%;
 }
-
 /* Ending Links */
+
 
 /* Footer */
 footer {
@@ -395,10 +396,9 @@ footer {
     bottom: 0;
     width: 100%;
     flex-shrink: 0;
-    /* Prevent footer from shrinking */
 }
-
 /* Ending Footer */
+
 
 /* PostJobProcessPage Specific Styles */
 .postjobform .form-grid {
@@ -528,10 +528,13 @@ footer {
 
 /* Ending Index Page Specific Styles */
 
+
+
+
 /* Post Job Process Page Specific Styles */
 .postjobprocess .card {
     padding: var(--spacing-lg);
-    max-height: 70vh;
+    max-height: max-content;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
@@ -558,7 +561,7 @@ footer {
     align-items: center;
     gap: var(--spacing-sm);
     width: 50%;
-    max-width: 600px;
+    max-width: max-content;
 }
 
 .postjobprocess .card p:not(:last-child)::before {
@@ -570,7 +573,7 @@ footer {
 .postjobprocess .card .error-message {
     background: #ffebee;
     color: #d32f2f;
-    padding: var(--spacing-md);
+    padding: var(--spacing-lg);
     border: 2px solid #d32f2f;
     border-radius: 4px;
     font-weight: 600;
@@ -592,24 +595,27 @@ footer {
     margin-bottom: var(--spacing-sm);
 }
 
+/* Error List */
 .postjobprocess .card ul {
     list-style: none;
-    margin: var(--spacing-sm) 0;
-    padding: var(--spacing-sm);
+    margin: var(--spacing-md) auto;
+    padding: var(--spacing-lg);
     background: #ffebee;
     border: 2px solid #d32f2f;
-    border-radius: 4px;
+    border-radius: 8px;
     width: 100%;
-    max-width: 760px;
-    word-wrap: break-word;
+    max-width: 100%;
+    text-align: left;
+    box-shadow: 0 2px 4px var(--shadow-light);
 }
 
 .postjobprocess .card ul li {
     color: #d32f2f;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     display: flex;
-    gap: var(--spacing-xxs);
-    line-height: 1.2;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+    line-height: 1.5;
 }
 
 .postjobprocess .card ul li::before {
@@ -618,42 +624,52 @@ footer {
     font-weight: 900;
 }
 
-/* Links Section */
-.postjobprocess .card p:last-child {
+.postjobprocess .links {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
     flex-wrap: wrap;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--medium-gray);
+    flex-shrink: 0;
 }
 
-.postjobprocess .card p:last-child a {
+/* Links Section */
+.postjobprocess .links a {
+    background: var(--primary-teal);
+    color: var(--white);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 6px;
     font-weight: 600;
-    color: var(--dark-teal);
-    padding: var(--spacing-sm);
-    transition:
-    color 0.3s,
-    transform 0.2s;
-    display: inline-flex;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
     align-items: center;
     gap: var(--spacing-sm);
-    text-decoration: none;
+    box-shadow: 0 2px 4px var(--shadow-light);
 }
 
-.postjobprocess .card p:last-child a:hover {
+.postjobprocess .links a:first-child {
+    background: white;
+    color: var(--primary-teal);
+    border: 2px solid var(--primary-teal);
+}
+
+.postjobprocess .links a:first-child:hover {
+    background: var(--light-gray);
     color: var(--darker-teal);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
-.postjobprocess .card p:last-child a::before {
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
+.postjobprocess .links a:last-child:hover {
+    background: var(--dark-teal);
+    color: var(--light-gray);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
-.postjobprocess .card .return-button::before {
-    content: "\f0fe";
-    /* Font Awesome plus-square icon (restored to match first image) */
-    font-family: "Font Awesome 6 Free";
-    font-weight: 900;
-}
+
+
 
 /* About Page Specific Styles */
 .about ul {
@@ -673,7 +689,7 @@ footer {
 
 .about .card {
     padding: var(--spacing-lg);
-    max-height: 70vh;
+    max-height: 75vh;
     overflow-y: auto;
     margin-top: var(--spacing-xl);
     display: flex;
@@ -735,38 +751,42 @@ footer {
     color: var(--darker-teal);
 }
 
-/* Image Links Section */
-.about .card .image-links {
+.about .links {
     display: flex;
     justify-content: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xl);
     flex-wrap: wrap;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--medium-gray);
+    flex-shrink: 0;
 }
 
-.about .card .image-button {
-    background: linear-gradient(135deg, var(--primary-teal), var(--light-gray));
-    /* Match return-button style */
+/* Links Section */
+.about .links a {
+    background: var(--primary-teal);
     color: var(--white);
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border: 2px solid var(--primary-teal);
-    border-radius: 4px;
-    font: 600 var(--font-size-base) var(--font-family);
-    cursor: pointer;
-    transition:
-    background-color 0.3s,
-    color 0.3s;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 6px;
+    font-weight: 600;
     text-decoration: none;
-    max-width: 150px;
-    /* Slightly smaller than return-button for balance */
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    box-shadow: 0 2px 4px var(--shadow-light);
 }
 
-.about .card .image-button:hover {
-    background: linear-gradient(135deg, var(--darker-teal), var(--light-gray));
-    /* Match return-button hover */
-    color: var(--white);
+.about .links a:first-child {
+    background: white;
+    color: var(--primary-teal);
+    border: 2px solid var(--primary-teal);
+}
+
+.about .links a:first-child:hover {
+    background: var(--light-gray);
+    color: var(--darker-teal);
+    box-shadow: 0 4px 8px var(--shadow);
 }
 
 /* Ending About Page Specific Styles */
@@ -950,19 +970,20 @@ footer {
 /* Search Job Results Page Specific Styles */
 .searchjobprocess .card {
     padding: var(--spacing-lg);
-    max-height: 70vh;
+    max-height: 60vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 /* Job List Container */
 .searchjobprocess .job-list {
-    flex: 1;
     overflow-y: auto;
+    flex: 1;
     margin-bottom: var(--spacing-lg);
     padding-right: var(--spacing-xs);
     max-height: 60vh;
@@ -1031,10 +1052,10 @@ footer {
 
 /* Error Message for Search Results */
 .searchjobprocess .error-message {
-    background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-    color: #e65100;
+    background: #ffebee;
+    color: #d32f2f;
     padding: var(--spacing-xl);
-    border: 2px solid #ff9800;
+    border: 2px solid #d32f2f;
     border-radius: 8px;
     font-weight: 600;
     font-size: var(--font-size-lg);
@@ -1051,6 +1072,8 @@ footer {
 .searchjobprocess .error-message i {
     font-size: var(--font-size-xl);
 }
+/* Error Message for Search Results */
+
 
 /* Links Section */
 .searchjobprocess .links {
@@ -1064,6 +1087,7 @@ footer {
     flex-shrink: 0;
 }
 
+/* Links Section */
 .searchjobprocess .links a {
     background: var(--primary-teal);
     color: var(--white);
@@ -1078,10 +1102,24 @@ footer {
     box-shadow: 0 2px 4px var(--shadow-light);
 }
 
+.searchjobprocess .links a:first-child {
+    background: var(--light-gray);
+    color: var(--primary-teal);
+    border: 2px solid var(--primary-teal);
+}
+
 .searchjobprocess .links a:hover {
     background: var(--dark-teal);
     box-shadow: 0 4px 8px var(--shadow);
 }
+
+.searchjobprocess .links a:first-child:hover {
+    background: var(--medium-gray);
+    color: var(--darker-teal);
+    box-shadow: 0 4px 8px var(--shadow);
+}
+
+
 
 /* Job Count Info */
 .searchjobprocess .job-info {

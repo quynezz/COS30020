@@ -28,7 +28,7 @@
 <?php
 session_start();
 
-// Validation each field functions
+// Validation functions (unchanged)
 function isValidPositionID($id)
 {
     return preg_match('/^ID\d{3}$/', $id);
@@ -59,14 +59,12 @@ function isPositionIDUnique($id, $file)
     return true;
 }
 
-// Initialize errors arrays
+// Initialize errors array
 $errors = [];
 
-// In case change it from testing enviroment to Mercury server
+// File path
 $data_dir = "../assingment1/data/jobs";
 $data_file = "position.txt";
-
-// Full file path
 $file_path = "$data_dir/$data_file";
 
 // Check if form is submitted
@@ -79,10 +77,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $contract = $_POST["contract"] ?? "";
     $location = $_POST["location"] ?? "";
     $application_by = $_POST["applicationBy"] ?? [];
-    $app_post = in_array("post", $application_by) ? "post" : "";
-    $app_email = in_array("email", $application_by) ? "email" : "";
 
-    // Store all form data in session for repopulation
+    // Combine application methods into a single field
+    $app_methods = [];
+    if (in_array("post", $application_by)) {
+        $app_methods[] = "post";
+    }
+    if (in_array("email", $application_by)) {
+        $app_methods[] = "email";
+    }
+    $application_method = implode(",", $app_methods); // e.g., "post,email" or "email" or "post" or ""
+
+    // Store form data in session for repopulation
     $_SESSION["positionID"] = $position_id;
     $_SESSION["title"] = $title;
     $_SESSION["description"] = $description;
@@ -94,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Validate inputs
     if (empty($position_id) || !isValidPositionID($position_id)) {
-        $errors[] = "<strong>Position</strong> ID must be 5 characters starting with 'ID' followed by 3 digits.";
+        $errors[] = "<strong>Position ID</strong> must be 5 characters starting with 'ID' followed by 3 digits.";
     } elseif (!isPositionIDUnique($position_id, $file_path)) {
         $errors[] = "<strong>Position ID</strong> must be unique.";
     }
@@ -122,15 +128,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // If no errors, proceed to save
     if (empty($errors)) {
-        // Create directory -> and then store a 'position.txt' if both of them not exists
+        // Create directory and file if they don't exist
         if (!file_exists($data_dir)) {
             mkdir($data_dir, 0755, true);
-            if(!is_file($file_path)){ // Check if the txt file exists
-                // fully open, write and close
-                file_put_contents($file_path, '');
-            }
         }
-        // Prepare data for error handling and saving data to file
+        if (!is_file($file_path)) {
+            file_put_contents($file_path, '');
+        }
+
+        // Prepare data for saving
         $record = implode("\t", [
             $position_id,
             $title,
@@ -139,8 +145,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $position,
             $contract,
             $location,
-            $app_post,
-            $app_email
+            $application_method
         ]) . "\n";
 
         // Save to file
@@ -148,35 +153,31 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($file) {
             fwrite($file, $record);
             fclose($file);
-            // Clear session data after successful posting
+            // Clear session data
             session_unset();
             session_destroy();
             echo '<p class="success-message"><i class="fas fa-check-circle"></i> Job vacancy posted successfully!</p>';
-        }
-        // Print out error message for process handling
-        else {
+        } else {
             echo '<p class="error-message"><i class="fas fa-times-circle"></i> Error: Unable to save job vacancy.</p>';
         }
     } else {
-        // Display filling errors section
+        // Display errors
         echo "<h2>Error(s) occurred:</h2><ul>";
         foreach ($errors as $error) {
             echo "<li>$error</li>";
         }
         echo "</ul>";
-        echo '<p><a href="postjobform.php"> Re-fill the posting form</a><i class="fa-solid fa-question fa-bounce" style="color: #000000;"></i></p>';
+        echo '<p><a href="postjobform.php">Re-fill the posting form</a><i class="fa-solid fa-question fa-bounce" style="color: #000000;"></i></p>';
     }
 } else {
     echo '<p class="error-message"><i class="fas fa-times-circle"></i> Error: Invalid request method.</p>';
 }
 ?>
-      <p><a href="index.php"><i class="fas fa-home"></i> Return to home page</a> <a href="postjobform.php"><i class="fas fa-briefcase"></i> Post another job</a></p>
+      <p class="links"><a href="index.php"><i class="fas fa-home"></i> Return to home page</a> <a href="postjobform.php"><i class="fas fa-briefcase"></i> Post another job</a></p>
     </section>
   </main>
-  // Footer section
   <footer>
     <p>© 2025 Lau Ngoc Quyen 104198996. All rights reserved.</p>
   </footer>
 </body>
-
 </html>
