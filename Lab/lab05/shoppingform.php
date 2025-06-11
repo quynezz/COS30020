@@ -6,7 +6,7 @@
   <meta name="description" content="Web application development" />
   <meta name="keywords" content="PHP" />
   <meta name="LauNgocQuyen" content="104198996" />
-  <title>TITLE</title>
+  <title>Shopping Form</title>
 </head>
 
 <!--Student_Name: LauNgocQuyen-->
@@ -14,16 +14,16 @@
 
 <body>
   <h1>Web Programming Form - Lab 5</h1>
-  <form action="shoppingsave.php" method="post">
+  <form action="shoppingsave.php" method="POST">
     <label>Please enter the item name:</label>
-    <br>
+        <br>
     <input type="text" name="name"></input>
-    <br>
+        <br>
     <label>Please enter the quantity:</label>
-    <br>
+        <br>
     <input type="number" name="quantity"></input>
-    <br>
-    <button type="submit" value="Submit">Save item</button>
+        <br>
+    <button type="submit">Save item</button>
   </form>
 </body>
 
