@@ -31,7 +31,7 @@
  <!--PHP-->
  <?php
 
-  if ($_SERVER["REQUEST_METHOD"] && isset($_POST["str"]) && !empty($_POST["srt"]) ) {
+  if ($_SERVER["REQUEST_METHOD"] && isset($_POST["str"]) && !empty($_POST["str"]) ) {
     // trim all the white space,remove all the punctuation and convert all into lower case
     $str = $_POST["str"];
     $input = htmlspecialchars($input, ENT_QUOTES, 'UTF-8');

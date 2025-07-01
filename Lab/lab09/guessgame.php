@@ -26,52 +26,51 @@
 
 
 
-  <?php
-  session_start();
-  $generated_random_number = rand(10, 20);
-  $random_number = 0;
+<?php
+session_start();
+$generated_random_number = rand(10, 20);
+$random_number = 0;
 
-  if (!isset($_SESSION["guess_number"])) {
+if (!isset($_SESSION["guess_number"])) {
     $_SESSION["guess_number"] = $generated_random_number;
     $random_number = $_SESSION["guess_number"];
-  } else {
+} else {
     $random_number = $_SESSION["guess_number"];
-  }
+}
 
-  if (!isset($_SESSION["guessing_count"])){
+if (!isset($_SESSION["guessing_count"])){
     $_SESSION["guessing_count"] = 0;
-  }
+}
 
 
-  // User guess number POST method
-  $user_number = $_POST["user_number"];
+// User guess number POST method
+$user_number = $_POST["user_number"];
 
-  // Check if the input is number or not
-  if (!is_numeric($user_number)) {
+// Check if the input is number or not
+if (!is_numeric($user_number)) {
     echo "<p>Please enter number only!</p>";
     return;
-  }
+}
 
 
-
-  if (isset($user_number) && !empty($user_number)) {
+if (isset($user_number) && !empty($user_number)) {
     // Increment the count
     $guessing_count = $_SESSION["guessing_count"];
     $guessing_count++;
     $_SESSION["guessing_count"] = $guessing_count;
     if ($user_number == $random_number) {
-      echo "<p> Congratulation, You guessed the hidden number</p>";
-      echo "<p>You have guess $guessing_count time!</p>";
+        echo "<p> Congratulation, You guessed the hidden number</p>";
+        echo "<p>You have guess $guessing_count time!</p>";
     } else if ($user_number > $random_number) {
-      echo "<p>Lower!</p>";
+        echo "<p>Lower!</p>";
     } else {
-      echo "<p>Higher!</p>";
+        echo "<p>Higher!</p>";
     }
-  } else {
+} else {
     echo "<p class='danger'>Please enter your number</p>";
-  }
+}
 
-  ?>
+?>
   <a href='giveup.php'>Give Up</a>
   <br>
   <a href='startover.php'>Start Over</a>

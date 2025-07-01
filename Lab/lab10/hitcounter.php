@@ -78,7 +78,4 @@ class HitCounter
     {
         $this->hit = 0;
     }
-
-
-
 }

@@ -20,7 +20,7 @@
   <br>
   <br>
   <label name="qty">Enter quantity: </label>
-  <input type="number" name="qty"/>
+  <input type="number" name="qty" min="0"/>
   <br>
   <br>
   <button type="submit">Submit</button>

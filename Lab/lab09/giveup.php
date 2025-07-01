@@ -16,16 +16,16 @@
   <h1>Task 2: Guess Game</h1>
 
 
-  <?php
-  session_start();
+<?php
+session_start();
 
 
-  $hidden_number = $_SESSION["guess_number"];
+$hidden_number = $_SESSION["guess_number"];
 
-  if (isset($hidden_number) && !empty($hidden_number)) {
+if (isset($hidden_number) && !empty($hidden_number)) {
     echo "<p>The hidden number was: $hidden_number</p>";
-  }
-  ?>
+}
+?>
 
 
   <a href="startover.php">Start Over</a>

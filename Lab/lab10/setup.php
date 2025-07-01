@@ -15,66 +15,66 @@
 
   <h1>Web Programming - Lab10</h1>
 
-  <?php
-  require_once("mysql_settings.php");
+<?php
+require_once("mysql_settings.php");
 
 
-  // Main database
-  $conn = @mysqli_connect($host, $user, $pwd, $sql_db);
+// Main database
+$conn = @mysqli_connect($host, $user, $pwd, $sql_db);
 
-  // Connect to mysql server
-  if ($conn->error) {
+// Connect to mysql server
+if ($conn->error) {
     echo ("Connection failed: " . @mysqli_errno($conn) . " " . @mysqli_error($conn));
-  } else {
+} else {
     echo "<p> No error at connection</p>";
-  }
+}
 
-  // check if table exists
-  if (!@mysqli_select_db($conn, $sql_db)) {
+// Check if table exists
+if (!@mysqli_select_db($conn, $sql_db)) {
     echo ("No match database" . @mysqli_error($conn));
-  } else {
+} else {
     echo "<p> Database setted successfully!</p>";
-  }
+}
 
-  // check if the table is exist in the database
-  $table = 'hitcounter';
+// Check if the table is exist in the database
+$table = 'hitcounter';
 
-  $query = "SELECT TABLE_NAME
-          FROM INFORMATION_SCHEMA.TABLES
-          WHERE TABLE_SCHEMA = '$sql_db'
-          AND TABLE_NAME = '$table'";
+$query = "SELECT TABLE_NAME
+    FROM INFORMATION_SCHEMA.TABLES
+    WHERE TABLE_SCHEMA = '$sql_db'
+    AND TABLE_NAME = '$table'";
 
-  $result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $query);
 
-  if (mysqli_num_rows($result) > 0) {
+if (mysqli_num_rows($result) > 0) {
     echo "Table $table exists";
-  } else {
+} else {
 
     // Creating table if not exists
     $create_table_query = "CREATE TABLE $table (
-      id SMALLINT NOT NULL,
-      hits SMALLINT NOT NULL,
-      PRIMARY KEY (id)
+        id SMALLINT NOT NULL,
+        hits SMALLINT NOT NULL,
+        PRIMARY KEY (id)
     )";
     $table_created = @mysqli_query($conn, $create_table_query);
     if (!$table_created) {
-      echo "Failed to creating $table table" . @mysqli_errno($conn) . " " . @mysqli_error($conn);
+        echo "Failed to creating $table table" . @mysqli_errno($conn) . " " . @mysqli_error($conn);
     } else {
-      echo "Successfully created the $table table";
-      echo "<br>";
+        echo "Successfully created the $table table";
+        echo "<br>";
     }
-  }
-  // Inser value int hitcounter table
-  $insert_query =  "INSERT INTO hitcounter (id,hits)
-                    VALUES ('1','0')";
+}
+// Inser value int hitcounter table
+$insert_query =  "INSERT INTO hitcounter (id,hits)
+    VALUES ('1','0')";
 
-  if(@mysqli_query($conn,$insert_query)){
+if(@mysqli_query($conn,$insert_query)){
     echo "Successfully insert value into $table";
-  }
+}
 
 
-  mysqli_close($conn);
-  ?>
+mysqli_close($conn);
+?>
 </body>
 
 </html>

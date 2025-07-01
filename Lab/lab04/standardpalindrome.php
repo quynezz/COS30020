@@ -20,16 +20,16 @@
   if (isset($_POST["str"])) {
     $str = $_POST["str"];
 
-    // trim all the white space,remvoe all the punctuation and convert all into lower case
+    // trim all the white space,remove all the punctuation and convert all into lower case
     $str = str_replace(" ", "", strtolower($str));
     $str = preg_replace("#[[:punct:]]#", "", $str);
 
     // reverse_str for checking
     $reverse_str = strrev($str);
     if ($reverse_str == $str) {
-      echo "The text you just type $str <strong>is </strong>a perfect palindrome!";
+      echo "<p style='color: green'>The text you just type $str <strong>is </strong>a perfect palindrome!";
     } else {
-      echo "The text you just type $str <strong>is not</strong> a perfect palindrome!";
+      echo "<p style='color: red'> The text you just type $str <strong>is not</strong> a perfect palindrome!";
     }
   } else {
     echo "<p>Please enter string from the input form.</p>";

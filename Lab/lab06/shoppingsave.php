@@ -15,62 +15,64 @@
 <body>
   <h1>Web Programming - Lab 6</h1>
 
-
 <?php
-// change later
-$filename = "./data/shop.txt";
+$filename = "../../data/lab06/shop.txt";
 
-if (isset($_POST["item"]) && isset($_POST["qty"]) && !empty(trim($_POST["item"])) && !empty(trim($_POST["qty"]))) {
-    $item = stripslashes(trim($_POST["item"]));
-    $qty = stripslashes(trim($_POST["qty"]));
+if (isset($_POST["item"]) && isset($_POST["qty"])) {
+    $item = trim($_POST["item"]);
+    $qty = trim($_POST["qty"]);
 
-    $alldata = array();
-    $itemdata = array();
+    if (!empty($item) && !empty($qty)) {
+        $item = stripslashes($item);
+        $qty = stripslashes($qty);
 
-    if (file_exists($filename) && filesize($filename) > 0) {
-        $handle = fopen($filename, "r");
-        while (!feof($handle)) {
-            $onedata = fgets($handle);
-            if ($onedata && trim($onedata) !== '') {
-                $data = explode(",", trim($onedata));
-                if (count($data) >= 2 && !empty(trim($data[0])) && !empty(trim($data[1]))) {
+        $alldata = array();
+        $itemdata = array();
 
-                    // Could use push or unshift
-                    $alldata[] = $data;
-                    $itemdata[] = $data[0];
+        if (file_exists($filename)) {
+            $handle = fopen($filename, "r");
+            while (!feof($handle)) {
+                $onedata = fgets($handle);
+                if ($onedata && trim($onedata) !== '') {
+                    $data = explode(",", trim($onedata));
+                        $alldata[] = $data;
+                        $itemdata[] = $data[0];
                 }
             }
+            fclose($handle);
         }
-        fclose($handle);
-    }
 
-    $newdata = in_array($item, $itemdata);
-    if (!$newdata) {
-        $handle = fopen($filename, "a");
-        $data = $item . "," . $qty . "\n";
-        fputs($handle, $data);
-        fclose($handle);
+        $newdata = in_array($item, $itemdata);
+        if (!$newdata) {
+            $handle = fopen($filename, "a");
+            $data = $item . "," . $qty . "\n";
+            fputs($handle, $data);
+            fclose($handle);
 
-        $alldata[] = array($item, $qty);
+            $alldata[] = array($item, $qty);
 
-        echo "<p>Shopping item added</p>";
+            echo "<p>Shopping item added</p>";
 
-        // Sort by name
-        usort($alldata, function($a, $b) {
-            return $a[0] > $b[0];
-        });
+            //Sort by name
+            usort($alldata, function($a, $b) {
+              	return $a[0] > $b[0];
+            });
 
-        echo "<p>Shopping List</p>";
-        foreach ($alldata as $data) {
-            echo htmlspecialchars(trim($data[0])) . " --- " . htmlspecialchars(trim($data[1])) . "<br>\n";
+            echo "<p>Shopping List</p>";
+            foreach ($alldata as $data) {
+                echo htmlspecialchars(trim($data[0])) . " --- " . htmlspecialchars(trim($data[1])) . "<br>\n";
+            }
+        } else {
+            echo "<p>Shopping item already exists</p>";
         }
     } else {
-        echo "<p>Shopping item already exists</p>";
+        echo "<p>Please enter item name and quantity</p>";
     }
 } else {
     echo "<p>Please enter item name and quantity</p>";
 }
 ?>
 </body>
-
 </html>
+
+
