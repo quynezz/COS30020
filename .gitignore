@@ -1,2 +1,3 @@
 # remove setting file
-/assignment_2/functions/settings.php
+assignment_2/functions/settings.php
+.gitignore
